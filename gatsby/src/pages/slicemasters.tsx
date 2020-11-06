@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SliceMastersPage = () => {
-    return <div>SliceMasters page</div>;
+    return <p>SliceMasters page</p>;
 };
 
 export default SliceMastersPage;

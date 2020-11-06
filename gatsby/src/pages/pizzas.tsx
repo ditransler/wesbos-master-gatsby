@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PizzasPage = () => {
-    return <div>Pizzas page</div>;
+    return <p>Pizzas page</p>;
 };
 
 export default PizzasPage;
