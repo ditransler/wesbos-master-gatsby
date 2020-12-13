@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import { PizzaNode } from '../../types/graphql-types';
 
 const PizzaGridStyles = styled.div`
     display: grid;
@@ -26,7 +27,11 @@ const PizzaStyles = styled.div`
     }
 `;
 
-const SinglePizza = ({ pizza }) => {
+type SinglePizzaProps = {
+    pizza: PizzaNode;
+};
+
+const SinglePizza: React.FC<SinglePizzaProps> = ({ pizza }) => {
     return (
         <PizzaStyles>
             <Link to={`/pizza/${pizza.slug.current}`}>
@@ -40,7 +45,11 @@ const SinglePizza = ({ pizza }) => {
     );
 };
 
-const PizzaList = ({ pizzas }) => {
+type PizzaListProps = {
+    pizzas: Array<PizzaNode>;
+};
+
+const PizzaList: React.FC<PizzaListProps> = ({ pizzas }) => {
     return (
         <PizzaGridStyles>
             {pizzas.map((pizza) => (

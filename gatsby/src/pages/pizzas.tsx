@@ -1,10 +1,21 @@
 import { graphql } from 'gatsby';
 import React from 'react';
+import { PizzasQuery } from '../../types/graphql-types';
 import PizzaList from '../components/PizzaList';
+import ToppingsFilter from '../components/ToppingsFilter';
 
-const PizzasPage = ({ data }) => {
+type PizzasPageProps = {
+    data: PizzasQuery;
+};
+
+const PizzasPage: React.FC<PizzasPageProps> = ({ data }) => {
     const pizzas = data.pizzas.nodes;
-    return <PizzaList pizzas={pizzas} />;
+    return (
+        <>
+            <ToppingsFilter />
+            <PizzaList pizzas={pizzas} />
+        </>
+    );
 };
 
 export const query = graphql`
