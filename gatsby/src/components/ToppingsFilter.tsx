@@ -75,13 +75,6 @@ const ToppingsFilter = () => {
     // Get a list of all the pizzas with their toppings
     const { pizzas }: { pizzas: Pizzas } = useStaticQuery(graphql`
         query {
-            toppings: allSanityTopping {
-                nodes {
-                    id
-                    name
-                    vegetarian
-                }
-            }
             pizzas: allSanityPizza {
                 nodes {
                     toppings {
