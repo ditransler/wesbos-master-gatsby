@@ -19,8 +19,8 @@ const PizzasPage: React.FC<PizzasPageProps> = ({ data }) => {
 };
 
 export const query = graphql`
-    query PizzaQuery {
-        pizzas: allSanityPizza {
+    query PizzaQuery($toppingRegex: String) {
+        pizzas: allSanityPizza(filter: { toppings: { elemMatch: { name: { regex: $toppingRegex } } } }) {
             nodes {
                 name
                 id
