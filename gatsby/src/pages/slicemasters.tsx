@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 import { ImageAsset } from '../../types/graphql-types';
+import Pagination from '../components/Pagination';
 
 const SlicemasterGrid = styled.div`
     display: grid;
@@ -59,13 +60,24 @@ type SliceMastersPageProps = {
             nodes: Array<SliceMaster>;
         };
     };
+    pageContext: {
+        skip: number;
+        currentPage: number;
+    };
 };
 
-const SliceMastersPage: React.FC<SliceMastersPageProps> = ({ data }) => {
+const SliceMastersPage: React.FC<SliceMastersPageProps> = ({ data, pageContext }) => {
     const slicemasters = data.slicemasters.nodes;
 
     return (
         <>
+            <Pagination
+                pageSize={parseInt(process.env.GATSBY_PAGE_SIZE, 10)}
+                totalCount={data.slicemasters.totalCount}
+                currentPage={pageContext.currentPage || 1}
+                skip={pageContext.skip}
+                base='/slicemasters'
+            />
             <SlicemasterGrid>
                 {slicemasters.map((person) => (
                     <SlicemasterStyles key={person.id}>
