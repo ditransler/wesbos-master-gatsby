@@ -23,10 +23,10 @@ type FluidImage = {
     srcWebp: string;
 };
 
-type ImageAsset = {
+export type ImageAsset = {
     fixed: FixedImage;
-    fluid: FluidImage
-}
+    fluid: FluidImage;
+};
 
 export type PizzaNode = {
     name: string;
