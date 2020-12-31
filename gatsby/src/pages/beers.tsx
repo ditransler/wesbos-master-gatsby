@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
+import SEO from '../components/SEO';
 
 const BeerGridStyles = styled.div`
     display: grid;
@@ -45,6 +46,7 @@ type BeerPageProps = {
 const BeersPage: React.FC<BeerPageProps> = ({ data }) => {
     return (
         <>
+            <SEO title={`Beers! We have ${data.beers.nodes.length} in stock`} />
             <h2 className='center'>We have {data.beers.nodes.length} Beers Available. Dine in Only!</h2>
             <BeerGridStyles>
                 {data.beers.nodes.map((beer) => {

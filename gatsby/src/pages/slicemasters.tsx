@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 import styled from 'styled-components';
 import { ImageAsset } from '../../types/graphql-types';
 import Pagination from '../components/Pagination';
+import SEO from '../components/SEO';
 
 const SlicemasterGrid = styled.div`
     display: grid;
@@ -71,6 +72,7 @@ const SliceMastersPage: React.FC<SliceMastersPageProps> = ({ data, pageContext }
 
     return (
         <>
+            <SEO title={`Slicemasters - Page ${pageContext.currentPage || 1}`} />
             <Pagination
                 pageSize={parseInt(process.env.GATSBY_PAGE_SIZE, 10)}
                 totalCount={data.slicemasters.totalCount}

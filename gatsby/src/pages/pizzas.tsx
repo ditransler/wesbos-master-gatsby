@@ -3,15 +3,20 @@ import React from 'react';
 import { PizzasQuery } from '../../types/graphql-types';
 import PizzaList from '../components/PizzaList';
 import ToppingsFilter from '../components/ToppingsFilter';
+import SEO from '../components/SEO';
 
 type PizzasPageProps = {
     data: PizzasQuery;
+    pageContext: {
+        topping: string;
+    };
 };
 
-const PizzasPage: React.FC<PizzasPageProps> = ({ data }) => {
+const PizzasPage: React.FC<PizzasPageProps> = ({ data, pageContext }) => {
     const pizzas = data.pizzas.nodes;
     return (
         <>
+            <SEO title={pageContext.topping ? `Pizzas With ${pageContext.topping}` : `All Pizzas`} />
             <ToppingsFilter />
             <PizzaList pizzas={pizzas} />
         </>
