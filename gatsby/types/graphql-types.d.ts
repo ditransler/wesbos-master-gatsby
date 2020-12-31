@@ -31,7 +31,7 @@ export type ImageAsset = {
 export type PizzaNode = {
     name: string;
     id: string;
-    price: string;
+    price: number;
     slug: {
         current: string;
     };
