@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import OrderContext from '../contexts/OrderContext';
 
 type OrderedPizza = {
     id: string;
@@ -6,8 +7,7 @@ type OrderedPizza = {
 };
 
 const usePizza = () => {
-    // 1. Create some state to hold our order
-    const [orders, setOrder] = useState<OrderedPizza[]>([]);
+    const [orders, setOrder] = useContext(OrderContext);
     // 2. Make a function to add things to the order
     function addToOrder(orderedPizza: OrderedPizza): void {
         setOrder([...orders, orderedPizza]);
