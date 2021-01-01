@@ -1,7 +1,8 @@
 import React from 'react';
-import SEO from '../components/SEO';
-import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import SEO from '../components/SEO';
+import OrderStyles from '../styles/OrderStyles';
 import { PizzasQuery } from '../../types/graphql-types';
 import useForm from '../utils/useForm';
 import formatMoney from '../utils/formatMoney';
@@ -21,7 +22,7 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
     return (
         <>
             <SEO title='Order a Pizza!' />
-            <form>
+            <OrderStyles>
                 <fieldset>
                     <legend>Your Info</legend>
                     <label htmlFor='name'>Name</label>
@@ -50,7 +51,7 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
                 <fieldset>
                     <legend>Order</legend>
                 </fieldset>
-            </form>
+            </OrderStyles>
         </>
     );
 };
