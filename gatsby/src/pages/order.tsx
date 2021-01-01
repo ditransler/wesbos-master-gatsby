@@ -2,10 +2,12 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import SEO from '../components/SEO';
+import PizzaOrder from '../components/PizzaOrder';
 import OrderStyles from '../styles/OrderStyles';
 import MenuItemStyles from '../styles/MenuItemStyles';
 import { PizzasQuery } from '../../types/graphql-types';
 import useForm from '../utils/useForm';
+import usePizza from '../utils/usePizza';
 import formatMoney from '../utils/formatMoney';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 
@@ -19,6 +21,7 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
         email: ''
     });
     const pizzas = data.pizzas.nodes;
+    const { orders, addToOrder, removeFromOrder } = usePizza();
 
     return (
         <>
@@ -41,7 +44,7 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
                             </div>
                             <div>
                                 {['S', 'M', 'L'].map((size) => (
-                                    <button type='button' key={size}>
+                                    <button type='button' key={size} onClick={() => addToOrder({ id: pizza.id, size })}>
                                         {size} {formatMoney(calculatePizzaPrice(pizza.price, size))}
                                     </button>
                                 ))}
@@ -51,6 +54,7 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
                 </fieldset>
                 <fieldset>
                     <legend>Order</legend>
+                    <PizzaOrder orders={orders} pizzas={pizzas} removeFromOrder={removeFromOrder} />
                 </fieldset>
             </OrderStyles>
         </>
