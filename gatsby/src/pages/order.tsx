@@ -10,6 +10,7 @@ import useForm from '../utils/useForm';
 import usePizza from '../utils/usePizza';
 import formatMoney from '../utils/formatMoney';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
+import calculateOrderTotal from '../utils/calculateOrderTotal';
 
 type OrderPageProps = {
     data: PizzasQuery;
@@ -52,9 +53,13 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
                         </MenuItemStyles>
                     ))}
                 </fieldset>
-                <fieldset>
+                <fieldset className='order'>
                     <legend>Order</legend>
                     <PizzaOrder orders={orders} pizzas={pizzas} removeFromOrder={removeFromOrder} />
+                </fieldset>
+                <fieldset>
+                    <h3>Your Total is {formatMoney(calculateOrderTotal(orders, pizzas))}</h3>
+                    <button type='submit'>Order Ahead</button>
                 </fieldset>
             </OrderStyles>
         </>
