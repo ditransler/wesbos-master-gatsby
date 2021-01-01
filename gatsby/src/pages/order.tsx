@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import SEO from '../components/SEO';
 import OrderStyles from '../styles/OrderStyles';
+import MenuItemStyles from '../styles/MenuItemStyles';
 import { PizzasQuery } from '../../types/graphql-types';
 import useForm from '../utils/useForm';
 import formatMoney from '../utils/formatMoney';
@@ -33,7 +34,7 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
                 <fieldset>
                     <legend>Menu</legend>
                     {pizzas.map((pizza) => (
-                        <div key={pizza.id}>
+                        <MenuItemStyles key={pizza.id}>
                             <Img width='50' height='50' fluid={pizza.image.asset.fluid} alt={pizza.name} />
                             <div>
                                 <h2>{pizza.name}</h2>
@@ -45,7 +46,7 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
                                     </button>
                                 ))}
                             </div>
-                        </div>
+                        </MenuItemStyles>
                     ))}
                 </fieldset>
                 <fieldset>
