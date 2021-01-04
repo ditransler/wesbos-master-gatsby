@@ -19,7 +19,8 @@ type OrderPageProps = {
 const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
     const { values, updateValue } = useForm({
         name: '',
-        email: ''
+        email: '',
+        mapleSyrup: ''
     });
     const pizzas = data.pizzas.nodes;
     const { orders, addToOrder, removeFromOrder, error, loading, message, submitOrder } = usePizza({
@@ -41,6 +42,14 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
                     <input type='text' name='name' id='name' value={values.name} onChange={updateValue} />
                     <label htmlFor='email'>Email</label>
                     <input type='email' name='email' id='email' value={values.email} onChange={updateValue} />
+                    <input
+                        className='mapleSyrup'
+                        type='text'
+                        name='mapleSyrup'
+                        id='mapleSyrup'
+                        value={values.mapleSyrup}
+                        onChange={updateValue}
+                    />
                 </fieldset>
                 <fieldset disabled={loading}>
                     <legend>Menu</legend>

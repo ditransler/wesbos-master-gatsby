@@ -15,6 +15,7 @@ type InitalValues = {
     values: {
         name: string;
         email: string;
+        mapleSyrup: string;
     };
 };
 
@@ -49,7 +50,8 @@ const usePizza = ({ pizzas, values }: InitalValues) => {
             order: attachNamesAndPrices(orders, pizzas),
             total: formatMoney(calculateOrderTotal(orders, pizzas)),
             name: values.name,
-            email: values.email
+            email: values.email,
+            mapleSyrup: values.mapleSyrup
         };
 
         // 4. Send this data to a serverless function when they check out

@@ -4,6 +4,7 @@ import { useState } from 'react';
 type Defaults = {
     name: string;
     email: string;
+    mapleSyrup: string;
 };
 
 const useForm = (defaults: Defaults) => {
