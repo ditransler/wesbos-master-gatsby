@@ -8,7 +8,7 @@ function generateOrderEmail({ order, total }) {
       ${order
           .map(
               (item) => `<li>
-            <img src="${item.thumbnail}" alt="${item.name}"/>${item.size} ${item.name} - ${item.price}</li>`
+            <img src="${item.thumbnail}" alt="${item.name}"/> ${item.size} ${item.name} - ${item.price}</li>`
           )
           .join('')}
     </ul>
@@ -37,7 +37,6 @@ exports.handler = async (event) => {
     const requiredFields = ['email', 'name', 'order'];
 
     for (const field of requiredFields) {
-        console.log(`Checking that ${field} is good`);
         if (!body[field]) {
             return {
                 statusCode: 400,
@@ -46,6 +45,16 @@ exports.handler = async (event) => {
                 })
             };
         }
+    }
+
+    // Make sure they actually have items in that order
+    if (!body.order.length) {
+        return {
+            statusCode: 400,
+            body: JSON.stringify({
+                message: `Why would you order nothing?!`
+            })
+        };
     }
 
     // Send the email
