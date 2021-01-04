@@ -43,7 +43,6 @@ const usePizza = ({ pizzas, values }: InitalValues) => {
 
         setLoading(true);
         setError(null);
-        setMessage('Go eat!');
 
         // Gather all the data
         const body = {

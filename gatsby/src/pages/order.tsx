@@ -35,14 +35,14 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
         <>
             <SEO title='Order a Pizza!' />
             <OrderStyles onSubmit={submitOrder}>
-                <fieldset>
+                <fieldset disabled={loading}>
                     <legend>Your Info</legend>
                     <label htmlFor='name'>Name</label>
                     <input type='text' name='name' id='name' value={values.name} onChange={updateValue} />
                     <label htmlFor='email'>Email</label>
                     <input type='email' name='email' id='email' value={values.email} onChange={updateValue} />
                 </fieldset>
-                <fieldset>
+                <fieldset disabled={loading}>
                     <legend>Menu</legend>
                     {pizzas.map((pizza) => (
                         <MenuItemStyles key={pizza.id}>
@@ -60,11 +60,11 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
                         </MenuItemStyles>
                     ))}
                 </fieldset>
-                <fieldset className='order'>
+                <fieldset className='order' disabled={loading}>
                     <legend>Order</legend>
                     <PizzaOrder orders={orders} pizzas={pizzas} removeFromOrder={removeFromOrder} />
                 </fieldset>
-                <fieldset>
+                <fieldset disabled={loading}>
                     <h3>Your Total is {formatMoney(calculateOrderTotal(orders, pizzas))}</h3>
                     <div>{error ? <p>Error: {error}</p> : ''}</div>
                     <button type='submit' disabled={loading}>
