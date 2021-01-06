@@ -51,7 +51,7 @@ const OrderPage: React.FC<OrderPageProps> = ({ data }) => {
                         onChange={updateValue}
                     />
                 </fieldset>
-                <fieldset disabled={loading}>
+                <fieldset disabled={loading} className='menu'>
                     <legend>Menu</legend>
                     {pizzas.map((pizza) => (
                         <MenuItemStyles key={pizza.id}>
