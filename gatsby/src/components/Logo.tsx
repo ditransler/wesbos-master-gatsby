@@ -15,6 +15,7 @@ const LogoStyles = styled.div`
     background-size: 150em;
     border: var(--borderSize) solid white;
     display: flex;
+
     .inner {
         margin: var(--borderSize);
         flex: 1;
@@ -23,10 +24,12 @@ const LogoStyles = styled.div`
         grid-template-rows: 20% 1fr 1fr;
         align-content: center;
     }
+
     .est {
         font-size: 1.5em;
         align-self: center;
     }
+
     h1 {
         display: grid;
         grid-template-rows: 8fr 2fr;
@@ -42,12 +45,14 @@ const LogoStyles = styled.div`
         letter-spacing: 0.2em;
         transform: translateY(-0.15em);
     }
+
     .slicks {
         transform: scale(1.4);
         display: block;
         text-shadow: 0.18em 0.18em 0 rgba(0, 0, 0, 0.05);
         perspective: 100px;
     }
+
     .letter {
         font-size: 5em;
         color: var(--red);
@@ -61,34 +66,41 @@ const LogoStyles = styled.div`
         display: inline-block;
         line-height: 1;
         transition: transform 0.3s;
+
         &.S {
             --translateX: -0.05;
         }
+
         &.l {
             --rotate: 2deg;
             --scale: 1.4;
             --translateX: 0.05em;
             --translateY: -0.05em;
         }
+
         &.i {
             --scale: 0.9;
             --translateY: -0.1em;
             --translateX: 0.1em;
         }
+
         &.c {
             --rotate: 3deg;
             --scale: 0.9;
             --translateX: 0.1em;
             --translateY: 0.23em;
         }
+
         &.k {
             --rotate: -12deg;
             --scale: 1.2;
             --translateX: 0.06em;
         }
+
         &.apos {
             --translateX: 0.1em;
         }
+
         &.s {
             --rotate: 12deg;
             --scale: 0.9;
@@ -97,7 +109,7 @@ const LogoStyles = styled.div`
     }
 `;
 
-export default function Logo() {
+const Logo = () => {
     return (
         <LogoStyles className='logo'>
             <div className='inner'>
@@ -117,4 +129,6 @@ export default function Logo() {
             </div>
         </LogoStyles>
     );
-}
+};
+
+export default Logo;
