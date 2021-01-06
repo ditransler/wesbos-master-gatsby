@@ -9,7 +9,7 @@ const LoadingGrid: React.FC<LoadingGridProps> = ({ count }) => {
     return (
         <ItemsGrid>
             {Array.from({ length: count }, (_, i) => (
-                <ItemStyles key={i}>
+                <ItemStyles key={`loader-${i}`}>
                     <p>
                         <span className='mark'>Loading...</span>
                     </p>
