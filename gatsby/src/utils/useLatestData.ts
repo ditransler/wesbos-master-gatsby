@@ -4,6 +4,23 @@ import { useState, useEffect } from 'react';
 // we can fake gql
 const gql = String.raw;
 
+// Just to grab the same fields
+// both from slicemaster and hotSlices
+// Note: we use '_id' instead of 'id' because
+// we are querying Sanity directly
+const deets = `
+    name
+    _id
+    image {
+        asset {
+            url
+            metadata {
+                lqip
+            }
+        }
+    }
+`;
+
 const useLatestData = () => {
     // Hot slices
     const [hotSlices, setHotSlices] = useState();
@@ -24,10 +41,10 @@ const useLatestData = () => {
                         StoreSettings(id: "downtown") {
                             name
                             slicemaster {
-                                name
+                                ${deets}
                             }
                             hotSlices {
-                                name
+                                ${deets}
                             }
                         }
                     }
@@ -40,6 +57,9 @@ const useLatestData = () => {
                 // Set the data to state
                 setHotSlices(res.data.StoreSettings.hotSlices);
                 setSlicemasters(res.data.StoreSettings.slicemaster);
+            })
+            .catch((err) => {
+                console.error(err);
             });
     }, []);
 
