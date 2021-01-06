@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 
+// If we need syntax highlighting for graphql query strings
+// we can fake gql
+const gql = String.raw;
+
 const useLatestData = () => {
     // Hot slices
     const [hotSlices, setHotSlices] = useState();
@@ -15,7 +19,7 @@ const useLatestData = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                query: `
+                query: gql`
                     query {
                         StoreSettings(id: "downtown") {
                             name
