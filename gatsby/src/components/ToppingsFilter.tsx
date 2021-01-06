@@ -33,6 +33,8 @@ const ToppingsStyles = styled.div`
         padding: 5px;
         background: var(--grey);
         border-radius: 2px;
+        text-decoration: none;
+        font-size: clamp(1.5rem, 1.4vw, 2.5rem);
 
         .count {
             background: #fff;
@@ -50,12 +52,13 @@ const countPizzasInToppings = (pizzasNodes: Array<PizzaNode>) => {
         .map((pizza) => pizza.toppings)
         .flat()
         .reduce<Record<string, CountedTopping>>((acc, topping) => {
-            // check if this is an existing topping
-            // if it is, increment it by 1
-            // otherwise create a new entry in our acc and set it to 1
-            if (acc.hasOwnProperty(topping.id)) {
-                acc[topping.id].count++;
+            // Check if this is an existing topping
+            const existingTopping = acc[topping.id];
+            if (existingTopping) {
+                // If it is, increment it by 1
+                existingTopping.count++;
             } else {
+                // Otherwise create a new entry in our acc and set it to 1
                 acc[topping.id] = {
                     id: topping.id,
                     name: topping.name,
@@ -70,7 +73,11 @@ const countPizzasInToppings = (pizzasNodes: Array<PizzaNode>) => {
     return sortedToppings;
 };
 
-const ToppingsFilter = () => {
+type ToppingsFilterProps = {
+    activeTopping: string;
+};
+
+const ToppingsFilter: React.FC<ToppingsFilterProps> = ({ activeTopping }) => {
     // Get a list of all the toppings
     // Get a list of all the pizzas with their toppings
     const { pizzas }: { pizzas: Pizzas } = useStaticQuery(graphql`
@@ -96,7 +103,11 @@ const ToppingsFilter = () => {
                 <span className='count'>{pizzas.nodes.length}</span>
             </Link>
             {toppingsWithCounts.map((topping) => (
-                <Link to={`/topping/${topping.name}`} key={topping.id}>
+                <Link
+                    to={`/topping/${topping.name}`}
+                    key={topping.id}
+                    className={topping.name === activeTopping ? 'active' : ''}
+                >
                     <span className='name'>{topping.name}</span>
                     <span className='count'>{topping.count}</span>
                 </Link>

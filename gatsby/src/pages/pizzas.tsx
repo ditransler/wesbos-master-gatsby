@@ -17,7 +17,7 @@ const PizzasPage: React.FC<PizzasPageProps> = ({ data, pageContext }) => {
     return (
         <>
             <SEO title={pageContext.topping ? `Pizzas With ${pageContext.topping}` : `All Pizzas`} />
-            <ToppingsFilter />
+            <ToppingsFilter activeTopping={pageContext.topping} />
             <PizzaList pizzas={pizzas} />
         </>
     );
